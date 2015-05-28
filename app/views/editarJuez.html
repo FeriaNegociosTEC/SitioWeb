@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="fullJudgeView">
+    <div class="row">
+      <div class="col-md-1">
+        <button ng-click="volver()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>Volver</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <button ng-click="eliminar()" type="button" class="btn btn-danger btn-block">Eliminar Juez <span class="glyphicon glyphicon-trash"></span></button>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Nombre:</h3>
+        <input type="text" ng-model="juez.nombre" class="form-control" id="txtnombre" placeholder="{{juez.nombre}}">
+      </div>
+      <div class="col-md-4">
+        <h3>Primer Apellido:</h3>
+        <input type="text" ng-model="juez.apellido1" class="form-control" id="txtapellido1" placeholder="{{juez.apellido1}}">
+      </div>
+      <div class="col-md-4">
+        <h3>Segundo Apellido:</h3>
+        <input type="text" ng-model="juez.apellido2" class="form-control" id="txtapellido2" placeholder="{{juez.apellido2}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Usuario:</h3>
+        <input type="text" ng-model="juez.usuario" class="form-control" id="txtnombre" placeholder="{{juez.usuario}}">
+      </div>
+      <!--<div class="col-md-4">
+        <h3>Contraseña:</h3>
+        <input type="text" ng-model="juez.password" class="form-control" id="txtapellido1" placeholder="{{juez.password}}">
+      </div>-->
+    </div>
+
+  <br>
+  <br>
+    <div class="row">
+      <div class="col-md-12">
+        <button ng-click="finalizar()" type="button" class="btn btn-success btn-block">Finalizar<span class="glyphicon glyphicon-plus"></span></button>
+      </div>
+    </div>
+
+  </div>
+</div>

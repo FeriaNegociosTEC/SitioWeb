@@ -1,0 +1,133 @@
+<div class="container"> 
+  <div class="centerNav">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="searchBar">
+
+          <form class="navbar-form navbar-left" role="search">
+            
+            <div class="btn-group">
+              <button type="button" class="btn btn-default">{{categoria}}</button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu" >
+                <li ng-repeat="categoria in listCategorias"><a ng-click="cCategoria(categoria.nombre)">{{categoria.nombre}}</a></li>
+              </ul>
+            </div>
+          
+          </form>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">{{etapa}}</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="etapa in listetapas"><a ng-click="cetapa(etapa.nombre)">{{etapa.nombre}}</a></li>
+              </ul>
+            </div>
+          
+          </form>
+          <form class="navbar-form navbar-right" role="search">
+           <div class="form-group">
+                <input ng-model="searchBar" type="text" class="form-control" placeholder="Buscar">
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-md-1">
+        <button ng-click="volver()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>Volver</button>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+      <h2>Asignar a Juez: <small>{{juez.nombre}} {{juez.apellido1}} {{juez.apellido2}}</small></h2>
+    </div>
+  </div>
+  </div>
+
+<div class="projectView" ng-repeat="proyecto in listProyectos|filter:search.categoria|filter:isEtapa|filter:searchBar">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <h1>{{proyecto.nombre}}<small>   id:{{proyecto.id}}</small></h1>
+      </div>
+      <div class="col-md-4 secondextraRow">
+        <h3>Calificación:<small>{{proyecto.calificacion}}</small></h3>
+      </div>
+      <div class="col-md-2">
+         <button ng-click="asignar(proyecto)" type="button" class="btn btn-primary extraRow">
+            Asignar <span class="glyphicon glyphicon-ok"></span>
+         </button>
+      </div>
+      <div class="col-md-1">
+         <button type="button" ng-click="verMas(proyecto,$index)" class="btn btn-default extraRow" ng-bind-html="proyecto.icon">
+          
+         </button>
+      </div>
+    </div>
+  
+  <div class="hideable animate-hide" ng-show="proyecto.active">
+    <hr>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Categoría: <small>{{proyecto.categoria}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Etapa:<small>  {{proyecto.etapa}}</small></h3>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Estudiantes:</h3> 
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="estudiante in proyecto.estudiantes">
+      <div class="col-md-3"></div>
+      <div class="col-md-9">
+        <h4>{{estudiante.nombre}}  <small>  {{estudiante.carnet}} {{estudiante.carrera}}</small></h4> 
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Descripción: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Ventajas: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Motivación: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+  </div><!-- hideable-->
+  <hr>
+  </div> <!-- proyectView-->
+</div>

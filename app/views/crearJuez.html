@@ -1,0 +1,32 @@
+<div class="container"> 
+  <div class="fullJudgeView">
+    <div class="row">
+      <div class="col-md-1">
+        <button ng-click="volver()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>Volver</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Nombre:</h3>
+        <input type="text" ng-model="juez.nombre" class="form-control" id="txtnombre" placeholder="">
+      </div>
+      <div class="col-md-4">
+        <h3>Primer Apellido:</h3>
+        <input type="text" ng-model="juez.apellido1" class="form-control" id="txtapellido1" placeholder="">
+      </div>
+      <div class="col-md-4">
+        <h3>Segundo Apellido:</h3>
+        <input type="text" ng-model="juez.apellido2" class="form-control" id="txtapellido2" placeholder="">
+      </div>
+         
+    </div>
+  <br>
+  <br>
+    <div class="row">
+      <div class="col-md-12">
+        <button ng-click="finalizar()" type="button" class="btn btn-success btn-block" ng-disabled="!(!!juez.nombre && !!juez.apellido1  && !!juez.apellido2)">Finalizar<span class="glyphicon glyphicon-plus"></span></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="container"> 
+  <div class="title">
+    <div class="form-group">
+      <input ng-model="searchBar" type="text" class="form-control" placeholder="Buscar">
+    </div>
+  </div>
+  <div class="projectView" ng-repeat="proyecto in listProyectos |filter:search.categoria|filter:isEtapa|filter:searchBar">
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-10 col-xs-10">
+        <h1>{{proyecto.nombre}}<small>   id:{{proyecto.id}}</small></h1>
+      </div>
+      <div class="col-md-1 col-xs-1">
+         <button type="button" ng-click="verMas(proyecto,proyecto.id)" class="btn btn-default extraRow" ng-bind-html="proyecto.icon">
+          
+         </button>
+      </div>
+    </div>
+  
+  <div class="hideable animate-hide" ng-show="proyecto.active">
+    <hr>
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-2 col-xs-10">
+        <button type="button" ng-click="juzgar(proyecto)" class="btn btn-success">Juzgar<span class="glyphicon glyphicon-ok-sign"></span></button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-6 col-xs-12">
+        <h3>Categoría: <small>{{proyecto.categoria}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-5 col-xs-12">
+        <h3>Etapa:<small> {{proyecto.etapa}}</small></h3>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-5 col-xs-12">
+        <h3>Estudiantes:</h3> 
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="estudiante in proyecto.estudiantes">
+      <div class="col-md-2 col-xs-0"></div>
+      <div class="col-md-9 col-xs-12">
+        <h4>{{estudiante.nombre}} {{estudiante.apellido1}} {{estudiante.apellido2}}<small>  {{estudiante.carnet}} 
+        {{estudiante.telefono}} {{estudiante.email}}</small> {{estudiante.carrera}}<small> {{estudiante.sede}}</small></h4> 
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Descripción: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Ventajas: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Motivación: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-1 col-xs-0"></div> 
+    <div class="col-md-3 col-xs-8">
+      <button type="button" ng-disabled="true" class="btn btn-primary">Descargar Archivos<span class="glyphicon glyphicon-download"></span></button> 
+    </div>
+      <div class="col-md-2 col-xs-4">
+      <button type="button" class="btn btn-info ng-isolate-scope" ng-csv="getArray(proyecto)" csv-header="getHeader()" filename="{{proyecto.nombre}}.csv" field-separator="," decimal-separator=".">Exportar <span class="glyphicon glyphicon-floppy-save"></span></button> 
+    </div>
+
+  </div>
+  </div><!-- hideable-->
+  <hr>
+  </div> <!-- proyectView-->
+</div>

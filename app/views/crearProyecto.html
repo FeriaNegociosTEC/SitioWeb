@@ -1,0 +1,118 @@
+<div parallax-background class="photo mainphoto" parallax-ratio="0.7">
+  <center>
+  <div class="header-image">
+  </div>
+  <p class="maintitle mainScreenText">El TEC fomenta el espíritu emprendedor empresarial desde una visión de ciclo de vida que contiene tres perspectivas: la gestación de una cultura emprendedora, el nacimiento de nuevas empresas y su apoyo durante la etapa inicial o de infancia</p>
+  </center>
+</div>
+<div parallax-background class="photo secondphoto" parallax-ratio="0.7">
+    <div class="largeButton">
+      <p class="mainScreenTitle">Participa!</p>
+      <button type="button" data-toggle="modal" data-target="#popUp" class="btn btn-default btn-block btn-lg">Ingresa tu idea</button>
+    </div>
+</div>
+<div parallax-background class="photo thirdphoto" parallax-ratio="0.7">
+    <p class="secondarytext mainScreenText">El objetivo de la Feria de Ideas de Negocios es fomentar la cultura emprendedora mediante la participación de ideas de negocios factibles de ser comercializadas y que tengan como fundamento el conocimiento científico, técnico y administrativo adquirido por todos los estudiantes del Instituto Tecnológico de Costa Rica.</div>
+</div>
+
+<div parallax-background class="photo fourthphoto" parallax-ratio="0.7">
+  <div class="largeButton">
+    <a class="btn btn-default btn-block btn-lg" href="../files/Bases_Feria_Idea_Negocios.docx" download="Bases.docx" role="button">Descarga las bases para participar</a>
+  </div>
+</div>
+
+<div class="space" id="content3"></div>
+
+<!--- MODAL-->
+<div class="modal fade" id="popUp" tabindex="-1" role="dialog" aria-labelledby="popUpLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="popUpLabel">Ingresar Idea</h4>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+        <label for="inputNombre"><h3>Nombre del proyecto</h3></label>
+        <input ng-model="proyecto.nombre" type="text" class="form-control" id="inputNombre" placeholder="">
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-block btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentCategoria}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="categoria in listCategorias"><a ng-click="cCategoria(categoria.id,categoria.nombre)">{{categoria.nombre}}</a></li>
+        </ul>
+      </div>
+      <hr>
+        <div class="row">
+          <div class="col-md-10">     
+            <h3>Participantes</h3>
+          </div>
+          <div class="col-md-2">     
+            <button type="button" ng-click="beginAgregar()" class="btn btn-primary thirdextraRow" ng-bind-html="icon">
+          </div>
+        </div>
+        <div ng-repeat="part in participantes">
+          <h4>{{part.nombre}} {{part.apellido1}} {{part.apellido2}}<small> {{part.carnet}}</small></h4>
+        </div>
+        <div ng-show="agregando">
+          <div class="form-group">
+          <form>
+            <label ><h4>Carnet</h4></label>
+            <input type="text" class="form-control" ng-model="participante.carnet" placeholder="ej: 201224495">
+            <label ><h4>Nombre</h4></label>
+            <input type="text" class="form-control" ng-model="participante.nombre" placeholder="">
+            <label ><h4>Primer Apellido</h4></label>
+            <input type="text" class="form-control" ng-model="participante.apellido1" placeholder="">
+            <label ><h4>Segundo Apellido</h4></label>
+            <input type="text" class="form-control" ng-model="participante.apellido2" placeholder="">
+            <label ><h4>Email</h4></label>
+            <input type="text" class="form-control" ng-model="participante.email" placeholder="">
+            <label ><h4>Telefono</h4></label>
+            <input type="text" class="form-control" ng-model="participante.telefono" placeholder="">
+          </form>
+          </div>
+          <div class="row">
+            <div class="col-md-5">   
+              <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentSede}} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="sede in listSedes"><a ng-click="cSede(sede.id,sede.nombre)">{{sede.nombre}}</a></li>
+              </ul>
+            </div>
+            <div class="col-md-7">  
+              <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentCarrera}} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="carrera in listCarreras"><a ng-click="cCarrera(carrera.id,carrera.nombre)">{{carrera.nombre}}</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" ng-click="agregarParticipante(participante)" class="btn btn-primary btn-block thirdextraRow"  ng-disabled="!(!!participante.nombre && !!participante.apellido1 && !!participante.apellido2 && !!participante.email&& !!participante.carnet && !!participante.telefono && !!currentSedeId && !!currentCarreraId)">
+            Agregar Participante </button>
+            </div>
+          </div>
+        </div>
+      <hr>
+      <div class="form-group">
+        <label for="inputMotivacion"><h3>Motivación y habilidades del equipo<small>Máximo 200 palabras.</small></h3></label>
+        <textarea ng-model="proyecto.motivacion" class="form-control" placeholder="Las variables a considerar en este apartado puender ser: capacitación formal o informal, estudios, contactos, conocimientos, experiencias personales emprendedoras, su actitud o motivación hacia el proyecto. " rows="3"></textarea>
+        <label for="inputMotivacion"><h3>Descripción de la idea<small>Máximo 200 palabras.</small></h3></label>
+        <textarea ng-model="proyecto.descripcion" class="form-control" placeholder="Explique cual es la idea fundamental, señalando cuales son los factores que han motivado esta idea y por que va a tener éxito. Es vital indicar que necesidades va a cubrir y en que mercado." rows="3"></textarea>
+        <label for="inputMotivacion"><h3>Ventajas competitivas<small>Máximo 200 palabras.</small></h3></label>
+        <textarea ng-model="proyecto.ventajas" class="form-control" placeholder="Cual es el valor agregado que refleja su producto o servicio para el consumidor, cual es su utilidad diferenciada. Ademas señale las ventajas que tendría sobre la competencia, por que el cliente potencial preferirá comprar su servicio o producto y no otros existentes?" rows="3"></textarea>
+        
+      </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-primary" ng-click="finalizar()" ng-disabled="!(!!proyecto.nombre && !!proyecto.descripcion  && !!proyecto.motivacion && !!proyecto.ventajas&& !!proyecto.motivacion && !!currentCategoriaId && !!participantes.length)" data-dismiss="modal"
+        >Finalizar <small>(por favor espere al mensaje de confirmación)</small></button>
+      </div>
+    </div>
+  </div>
+</div>

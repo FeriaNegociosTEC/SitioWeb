@@ -1,0 +1,144 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <button ng-click="volver()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>Volver</button>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h3>Nombre:</h3>
+      <input type="text" ng-model="proyecto.nombre" class="form-control" id="txtnombre" placeholder="{{proyecto.nombre}}">
+    </div>
+    <div class="col-md-1">
+       
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-block btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentCategoria}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="categoria in listCategorias"><a ng-click="cCategoria(categoria.id,categoria.nombre)">{{categoria.nombre}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <h3>Participantes:</h3> 
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="estudiante in proyecto.estudiantes">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+      <h4>{{estudiante.nombre}} {{estudiante.apellido1}} {{estudiante.apellido2}}<small> {{estudiante.carnet}}</small></h4>
+    </div>
+    <div class="col-md-1">
+      <button ng-click="eliminarParticipante(estudiante)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+
+    </div>
+    <div class="col-md-1">
+      <button type="button" ng-click="beginAgregar()" class="btn btn-success" ng-bind-html="icon"></button>
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+    <div ng-show="agregando">
+        <div class="form-group">
+        <form>
+          <label ><h4>Carnet</h4></label>
+          <input type="text" class="form-control" ng-model="participante.carnet" placeholder="ej: 201224495">
+          <label ><h4>Nombre</h4></label>
+          <input type="text" class="form-control" ng-model="participante.nombre" placeholder="">
+          <label ><h4>Primer Apellido</h4></label>
+          <input type="text" class="form-control" ng-model="participante.apellido1" placeholder="">
+          <label ><h4>Segundo Apellido</h4></label>
+          <input type="text" class="form-control" ng-model="participante.apellido2" placeholder="">
+          <label ><h4>Email</h4></label>
+          <input type="text" class="form-control" ng-model="participante.email" placeholder="">
+          <label ><h4>Telefono</h4></label>
+          <input type="text" class="form-control" ng-model="participante.telefono" placeholder="">
+        </form>
+        </div>
+        <div class="row">
+          <div class="col-md-5">   
+            <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentSede}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="sede in listSedes"><a ng-click="cSede(sede.id,sede.nombre)">{{sede.nombre}}</a></li>
+            </ul>
+          </div>
+          <div class="col-md-7">  
+            <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{currentCarrera}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="carrera in listCarreras"><a ng-click="cCarrera(carrera.id,carrera.nombre)">{{carrera.nombre}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" ng-click="agregarParticipante()" class="btn btn-primary btn-block thirdextraRow"  ng-disabled="!(!!participante.nombre && !!participante.apellido1 && !!participante.apellido2 && !!participante.email&& !!participante.carnet && !!participante.telefono && !!currentSedeId && !!currentCarreraId)">
+          Agregar Participante </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+    <h3>Descripción:</h3>
+      <textarea class="form-control" ng-model="proyecto.descripcion" placeholder="{{proyecto.descripcion}}" rows="3"></textarea>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <h3>Ventajas:</h3>
+      <textarea class="form-control" ng-model="proyecto.ventajas" placeholder="{{proyecto.ventajas}}" rows="3"></textarea>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <h3>Motivación:</h3>
+      <textarea class="form-control"  ng-model="proyecto.motivacion" placeholder="{{proyecto.motivacion}}" rows="3"></textarea>
+    </div>
+
+  </div>
+   <br>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+      <button ng-disabled="!(!!proyecto.motivacion&&!!proyecto.ventajas&&!!proyecto.descripcion&&!!proyecto.nombre)&&(currentCategoria==='Categoría')"
+       ng-click="finalizar()" type="button" class="btn btn-success btn-block">Finalizar <span class="glyphicon glyphicon-check"></span></button> 
+    </div>
+    <div class="col-md-4">
+      <button ng-click="eliminarProyecto()" type="button" class="btn btn-danger btn-block">Eliminar Proyecto<span class="glyphicon glyphicon-trash"></span></button> 
+    </div>
+  </div>
+  <br>
+</div>
+

@@ -1,0 +1,77 @@
+<div class="container"> 
+  <div class="row">
+    <div class="col-md-1 col-xs-0"></div>
+    <div class="col-md-2 col-xs-2">
+      <button type="button" ng-click="volver()" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span>Volver</button>
+    </div>
+  </div>
+
+  <div class="title">
+      <h1>{{proyecto.nombre}}<small>   id:{{proyecto.id}}</small></h1>
+  </div>
+  <div class="title"><h1>Juzgar </h1></div>
+  <div class="projectView" ng-repeat="concepto in etapa">
+    <h4>{{concepto.nombre}} <small>{{concepto.descripcion}}</small>
+    </h4>
+    <input type="text" class="form-control" placeholder="Nota de 0 a 100" ng-model="concepto.nota">
+  </div>
+
+  <div class="title">
+      <button type="button" ng-click="finalizar()" class="btn btn-success">Finalizar<span class="glyphicon glyphicon-ok-sign"></span></button>
+  </div>
+  <div class="projectView">
+    <hr>
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-6 col-xs-12">
+        <h3>Categoría: <small>{{proyecto.categoria}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-5 col-xs-12">
+        <h3>Etapa:<small> {{proyecto.etapa}}</small></h3>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-0"></div>
+      <div class="col-md-5 col-xs-12">
+        <h3>Estudiantes:</h3> 
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="estudiante in proyecto.estudiantes">
+      <div class="col-md-2 col-xs-0"></div>
+      <div class="col-md-9 col-xs-12">
+        <h4>{{estudiante.nombre}} {{estudiante.apellido1}} {{estudiante.apellido2}}<small>  {{estudiante.carnet}} 
+        {{estudiante.telefono}} {{estudiante.email}}</small> {{estudiante.carrera}}<small> {{estudiante.sede}}</small></h4> 
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Descripción: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Ventajas: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Motivación: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+  <hr>
+  </div> <!-- proyectView-->
+</div>

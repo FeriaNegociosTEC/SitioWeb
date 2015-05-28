@@ -1,0 +1,132 @@
+<div class="container">  
+  <div class="centerNav">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="searchBar">
+
+          <form class="navbar-form navbar-left" role="search">
+            
+            <div class="btn-group">
+              <button type="button" class="btn btn-default">{{categoria}}</button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu" >
+                <li ng-repeat="categoria in listCategorias"><a ng-click="cCategoria(categoria.nombre)">{{categoria.nombre}}</a></li>
+              </ul>
+            </div>
+          
+          </form>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">{{etapa}}</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="etapa in listetapas"><a ng-click="cetapa(etapa.nombre)">{{etapa.nombre}}</a></li>
+              </ul>
+            </div>
+          
+          </form>
+          <form class="navbar-form navbar-right" role="search">
+           <div class="form-group">
+                <input ng-model="searchBar" type="text" class="form-control" placeholder="Buscar">
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <div class="projectView" ng-repeat="proyecto in listProyectos |filter:search.categoria|filter:isEtapa|filter:searchBar">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <h1>{{proyecto.nombre}}<small>   id:{{proyecto.id}}</small></h1>
+      </div>
+      <div class="col-md-1">
+         <button type="button" ng-click="verMas(proyecto,proyecto.id)" class="btn btn-default extraRow" ng-bind-html="proyecto.icon">
+          
+         </button>
+      </div>
+    </div>
+  
+  <div class="hideable animate-hide" ng-show="proyecto.active">
+    <hr>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <button type="button" ng-click="editar(proyecto)" class="btn btn-warning">Editar<span class="glyphicon glyphicon-pencil"></span></button> 
+      </div>
+      <div class="col-md-3">
+        <button type="button" ng-disabled="true" class="btn btn-primary">Descargar Archivos<span class="glyphicon glyphicon-download"></span></button> 
+      </div>
+        <div class="col-md-2">
+        <button type="button" ng-disabled="true" class="btn btn-info">Exportar <span class="glyphicon glyphicon-floppy-save"></span></button> 
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Calificación: <small ng-repeat="promedio in proyecto.promedioEtapa">
+        Etapa {{promedio.etapa}}: {{promedio.promedio}}</small></h3>
+      </div>
+      <div class="col-md-6">
+        <h3>Categoría: <small>{{proyecto.categoria}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Etapa:<small> {{proyecto.etapa}}</small></h3>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h3>Estudiantes:</h3> 
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="estudiante in proyecto.estudiantes">
+      <div class="col-md-2"></div>
+      <div class="col-md-9">
+        <h4>{{estudiante.nombre}} {{estudiante.apellido1}} {{estudiante.apellido2}}<small>  {{estudiante.carnet}} {{estudiante.telefono}} {{estudiante.email}}</small> {{estudiante.carrera}}<small> {{estudiante.sede}}</small></h4> 
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Descripción: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Ventajas: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h3>Motivación: <small>{{proyecto.descripcion}}</small></h3>
+      </div>
+    </div>
+  </div><!-- hideable-->
+  <hr>
+  </div> <!-- proyectView-->
+</div>
